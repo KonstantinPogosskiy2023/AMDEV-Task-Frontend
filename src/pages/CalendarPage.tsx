@@ -20,7 +20,7 @@ import reservationService from "../api/reservationService";
 import spotService from "../api/spotService";
 import 'react-calendar/dist/Calendar.css';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
-import { TIME_SLOTS } from '../constants';
+import { TIME_SLOTS, BOOKED } from '../constants';
 import { dateFormatting } from "../utils";
 import { useSnackbar } from "notistack";
 import { ReservationInterface } from "../interfaces";
@@ -49,7 +49,7 @@ export default function CalendarPage() {
       }
     };
     fetchData();
-  }, [dialogOpen]);
+  }, [dialogOpen, spot.id]);
 
   const handleDateClick = async (date: Date) => {
     setSelectedDate(date);
@@ -89,7 +89,7 @@ export default function CalendarPage() {
       parking_spot_number: id,
       reserved_date,
       reserved_time: slot,
-      status: 'Booked',
+      status: BOOKED,
     };
 
     try {
@@ -171,7 +171,7 @@ export default function CalendarPage() {
         </Typography>
       </Box>
       <Box display="flex" flexDirection="column">
-        <Box>
+        <Box mt={3}>
           <Typography variant="h5" gutterBottom>
             Бронирование места A-0{spot.id}
           </Typography>

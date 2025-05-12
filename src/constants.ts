@@ -9,3 +9,5 @@ export const TIME_SLOTS = [
   '16:00-17:00',
   '17:00-18:00',
 ];
+export const CANCELED = 'canceled';
+export const BOOKED = 'booked';
